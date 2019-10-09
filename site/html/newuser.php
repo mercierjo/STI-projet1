@@ -17,7 +17,7 @@
     //Executer si le bouton "submit" a ete presse
 	if(isset($_POST['btnSubmit']) && $userValide && $mdpValide) {
         $dbname = connect();
-        $sql = 'INSERT INTO account(username, password, validity, role) VALUES (:username, :password, :validity, :role)';
+        $sql = 'INSERT INTO account(username, password, validity, deleted, role) VALUES (:username, :password, :validity, 0, :role)';
 
         $sth = $dbname->prepare($sql);
         $sth->bindParam(':username', $_POST['tbxUsername'], PDO::PARAM_STR);

@@ -21,7 +21,7 @@
     if(isset($_POST['submitted'])){
         $dbname = connect();
 
-        $sth = $dbname->prepare("SELECT username, password, validity, role FROM account WHERE username = :username AND password = :password");
+        $sth = $dbname->prepare("SELECT username, password, validity, deleted, role FROM account WHERE username = :username AND password = :password");
         $sth->bindParam(':username', $_POST['tbxEmail'], PDO::PARAM_STR);
         $sth->bindParam(':password', hash('sha256', $_POST['tbxPassword']), PDO::PARAM_STR);
         $sth->execute();
@@ -30,7 +30,7 @@
 
         $badLogin = empty($result);
 
-        if(!$badLogin && $result['validity'] == 1){
+        if(!$badLogin && $result['validity'] == 1 && $result['deleted'] == 0) {
             $_SESSION['username'] = $result['username'];
             $_SESSION['role'] = $result['role'];
             header('Location: ./listmessage.php');

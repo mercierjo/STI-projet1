@@ -29,14 +29,13 @@
     $destinataireValide = false;
     $sujetValide = true;
     $messageValide = true;
-
     $dataValide = false; // Toutes les donnees sont valides
 
     //Executer si le bouton "submit" a ete presse
 	if(isset($_POST['btnSubmit'])) {
         if(isset($_POST['tbxDestinataire'])) {
             $db = connect();
-            $request = $db->prepare('SELECT username FROM account WHERE username = :username');
+            $request = $db->prepare('SELECT username FROM account WHERE username = :username AND deleted = 0');
             $request->bindParam(':username', $_POST['tbxDestinataire'], PDO::PARAM_STR);
             $request->execute();
             $result = $request->fetch();
@@ -117,7 +116,9 @@
                                     <button type="submit" class="btn btn-danger" name="btnSubmit">Envoyer</button>
                                     <a class="btn btn-danger" href="./listmessage.php">Retour</a>
                                 </form>
-                                <?php if($messageEnvoye) { echo 'le message a été envoyé';} ?>
+                                <?php 
+                                    echo $messageEnvoye ? 'le message a été envoyé' : '';
+                                ?>
                             </div>
                         </div>
                     </div>

@@ -68,7 +68,7 @@
                                 <?php
                                     if(isset($_SESSION['username']) && $_SESSION['role'] == 2) {
                                         $dbh = connect();
-                                        $sql = 'SELECT account.username, account.validity, role.name FROM account INNER JOIN role ON account.role = role.id';
+                                        $sql = 'SELECT account.username, account.validity, role.name FROM account INNER JOIN role ON account.role = role.id WHERE account.deleted = 0';
                                         
                                         $datas = $dbh->query($sql);
 

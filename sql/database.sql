@@ -8,6 +8,7 @@ CREATE TABLE account(
     username TEXT PRIMARY KEY NOT NULL,
     password TEXT NOT NULL,
     validity INTEGER NOT NULL,
+    deleted INTEGER NOT NULL,
     role INTEGER NOT NULL,
     FOREIGN KEY(role) REFERENCES role(id)
 );
@@ -28,10 +29,10 @@ INSERT INTO role(id, name) VALUES
 (NULL,'Collaborateur'), 
 (NULL,'Administrateur');
 
-INSERT INTO account(username, password, validity, role) VALUES 
-('admin@sti.ch', '277bd398664ea2dfcab76d9a3955bff2f09ceabadf280c013e5b1b8109736046', 1, 2), -- password: admin2019
-('collaborateur1@sti.ch', 'eeff84539a71d1161041c7e764fc96397d56d0c97300d12c6e2c6c557deabcd2', 1, 1), -- password: collaborateur2019
-('collaborateur2@sti.ch', 'eeff84539a71d1161041c7e764fc96397d56d0c97300d12c6e2c6c557deabcd2', 1, 1); -- password: collaborateur2019
+INSERT INTO account(username, password, validity, deleted, role) VALUES 
+('admin@sti.ch', '277bd398664ea2dfcab76d9a3955bff2f09ceabadf280c013e5b1b8109736046', 1, 0, 2), -- password: admin2019
+('collaborateur1@sti.ch', 'eeff84539a71d1161041c7e764fc96397d56d0c97300d12c6e2c6c557deabcd2', 1, 0, 1), -- password: collaborateur2019
+('collaborateur2@sti.ch', 'eeff84539a71d1161041c7e764fc96397d56d0c97300d12c6e2c6c557deabcd2', 1, 0, 1); -- password: collaborateur2019
 
 INSERT INTO message(id, recieveDate, sender, reciever, subject, message) VALUES 
 (NULL, '2019-10-01', 'admin@sti.ch', 'collaborateur1@sti.ch', 'Bande passante', 'Arrête d''utiliser toute la bande passante !'),

@@ -14,7 +14,7 @@
 
     if(isset($_GET['username'])) {
         $file_db = connect();
-        $sql = "DELETE FROM account WHERE username = :username";
+        $sql = "UPDATE account SET deleted = 1 WHERE username = :username";
         $request = $file_db->prepare($sql);
         $request->bindParam(':username', $_GET['username'], PDO::PARAM_STR);
         $request->execute();
