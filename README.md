@@ -1,10 +1,13 @@
 # STI Project One
 
 **Auteur: Jordan Mercier, Maximilian Vogel**  
-**Date: 10.10.2019**
+**Date: 16.10.2019**
 
 ## Credentials
 ### Interface phpliteadmin  
+```url
+http://localhost:8080/phpliteadmin.php
+```
 Mot de passe: `admin`  
 
 ### Base de donnée  
@@ -21,3 +24,8 @@ chmod 755 run.sh
 ./run.sh
 ```
 **Note:** Le fichier sqlite est copié dans le container. Par conséquent les données ne sont pas persistantes.
+
+## Connexion à l'application
+```url
+http://localhost:8080/
+```
